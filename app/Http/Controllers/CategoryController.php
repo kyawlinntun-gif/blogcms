@@ -25,7 +25,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:3|max:20|unique:categories'
+            'name' => 'required|string|min:3|max:20|unique:categories,name'
         ]);
 
         if ($validator->fails()) {
@@ -35,6 +35,39 @@ class CategoryController extends Controller
         Category::create(['name' => $request->name]);
 
         Session::flash('info', 'New category is created!');
+
+        return redirect()->back();
+    }
+
+    public function edit(Category $category)
+    {
+        return view('category.edit', [
+            'category' => $category
+        ]);
+    }
+
+    public function update(Request $request, Category $category)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:3|max:20|unique:categories,name,'. $category->id
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $category->update(['name' => $request->name]);
+
+        Session::flash('info', 'Category is updated!');
+
+        return redirect(url('/categories'));
+    }
+
+    public function destory(Category $category)
+    {
+        $category->delete();
+
+        Session::flash('info', 'Category is deleted!');
 
         return redirect()->back();
     }

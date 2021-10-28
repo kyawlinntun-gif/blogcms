@@ -20,22 +20,31 @@
         </div>
     </nav>
 
+    @if(Session::has('info'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <em>{{ Session::get('info') }}</em>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
     @if (count($categories) > 0)
 
         <div class="panel">
             <div class="panel-heading">All Categories</div>
             <div class="panel-body">
-                <table class="table">
+                <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th colspan="3">Category</th>
+                            <th scope="col" colspan="3">Category</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($categories as $category)
                             <tr>
                                 <td>{{ $category->name }}</td>
-                                <td>Edit</td>
+                                <td><a href="{{ url('/categories/' . $category->id . '/edit') }}">Edit</a></td>
                                 <td><a href="#" class="btn btn-danger">Delete</a></td>
                             </tr>
                         @endforeach
