@@ -20,16 +20,30 @@
         </div>
     </nav>
 
+    @if(Session::has('info'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <em>{{ Session::get('info') }}</em>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+
     <div class="panel panel-default">
+
+        {{-- ---------- Start of Form Errors ---------- --}}
+        @include('common.errors')
+        {{-- ---------- End of Form Errors ---------- --}}
+
         <div class="panel-body">
             {{ Form::open(['url' => 'categories', 'method' => 'post']) }}
-                <div class="form-group">
-                    {{ Form::label('name', null, ['class' => 'control-label']) }}
-                    {{ Form::text('name', null, array_merge(['class' => 'form-control'])) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::submit('Create category') }}    
-                </div>
+            <div class="form-group">
+                {{ Form::label('name', null, ['class' => 'control-label']) }}
+                {{ Form::text('name', null, array_merge(['class' => 'form-control'])) }}
+            </div>
+            <div class="form-group">
+                {{ Form::submit('Create category') }}
+            </div>
             {{ Form::close() }}
         </div>
     </div>

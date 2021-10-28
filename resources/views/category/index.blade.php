@@ -20,4 +20,30 @@
         </div>
     </nav>
 
+    @if (count($categories) > 0)
+
+        <div class="panel">
+            <div class="panel-heading">All Categories</div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="3">Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($categories as $category)
+                            <tr>
+                                <td>{{ $category->name }}</td>
+                                <td>Edit</td>
+                                <td><a href="#" class="btn btn-danger">Delete</a></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    @endif
+
 @endsection

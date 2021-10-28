@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        return view('category.index');
+        $categories = Category::all();
+        return view('category.index', [
+            'categories' => $categories
+        ]);
     }
 
     public function create()
@@ -21,7 +25,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:3|max:20'
+            'name' => 'required|string|min:3|max:20|unique:categories'
         ]);
 
         if ($validator->fails()) {
@@ -29,6 +33,8 @@ class CategoryController extends Controller
         }
 
         Category::create(['name' => $request->name]);
+
+        Session::flash('info', 'New category is created!');
 
         return redirect()->back();
     }
