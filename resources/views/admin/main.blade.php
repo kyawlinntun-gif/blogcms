@@ -12,13 +12,13 @@
     <title>AIT Computer Laravel Blog CMS</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    {{ Html::style('admin/vendor/fontawesome-free/css/all.min.css') }}
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    {{ Html::style('admin/css/sb-admin-2.min.css') }}
 
 </head>
 
@@ -409,14 +409,14 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    {{ Html::script('admin/vendor/jquery/jquery.min.js') }}
+    {{ Html::script('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}
 
     <!-- Core plugin JavaScript-->
-    <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    {{ Html::script('admin/vendor/jquery-easing/jquery.easing.min.js') }}
 
     <!-- Custom scripts for all pages-->
-    <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
+    {{ Html::script('admin/js/sb-admin-2.min.js') }}
 
 </body>
 

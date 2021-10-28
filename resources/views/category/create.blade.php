@@ -20,4 +20,18 @@
         </div>
     </nav>
 
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {{ Form::open(['url' => 'categories', 'method' => 'post']) }}
+                <div class="form-group">
+                    {{ Form::label('name', null, ['class' => 'control-label']) }}
+                    {{ Form::text('name', null, array_merge(['class' => 'form-control'])) }}
+                </div>
+                <div class="form-group">
+                    {{ Form::submit('Create category') }}    
+                </div>
+            {{ Form::close() }}
+        </div>
+    </div>
+
 @endsection
