@@ -10,7 +10,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">View All Categories</a>
+                        <a class="nav-link active" aria-current="page" href="{{ url('/categories') }}">View All Categories</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Create New Category</a>

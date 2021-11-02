@@ -63,7 +63,7 @@ class CategoryController extends Controller
         return redirect(url('/categories'));
     }
 
-    public function destory(Category $category)
+    public function destroy(Category $category)
     {
         $category->delete();
 

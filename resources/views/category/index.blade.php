@@ -45,7 +45,12 @@
                             <tr>
                                 <td>{{ $category->name }}</td>
                                 <td><a href="{{ url('/categories/' . $category->id . '/edit') }}">Edit</a></td>
-                                <td><a href="#" class="btn btn-danger">Delete</a></td>
+                                <td>
+                                    <button class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('{{'category'. $category->id }}').submit();">Delete</button>
+                                    {{ Form::open(['url' => 'categories/' . $category->id, 'method' => 'delete', 'class' => 'd-none', 'id' => 'category' . $category->id]) }}
+                                    {{ Form::close() }}
+
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
