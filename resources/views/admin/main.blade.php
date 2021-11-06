@@ -66,8 +66,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Blog</h6>
-                        <a class="collapse-item" href="buttons.html">Create a New Post</a>
-                        <a class="collapse-item" href="cards.html">View All Posts</a>
+                        <a class="collapse-item" href="{{ url('/posts/create') }}">Create a New Post</a>
+                        <a class="collapse-item" href="{{ url('/posts') }}">View All Posts</a>
                     </div>
                 </div>
             </li>
