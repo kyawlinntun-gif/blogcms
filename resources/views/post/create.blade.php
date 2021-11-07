@@ -36,13 +36,40 @@
         {{-- ---------- End of Form Errors ---------- --}}
 
         <div class="panel-body">
-            {{ Form::open(['url' => 'categories', 'method' => 'post']) }}
+            {{ Form::open(['url' => 'posts', 'method' => 'post', 'files' => true]) }}
+
             <div class="form-group">
-                {{ Form::label('name', null, ['class' => 'control-label']) }}
-                {{ Form::text('name', null, array_merge(['class' => 'form-control'])) }}
+                {{ Form::label('category_id', 'Category Name') }} <br>
+                {{ Form::select('category_id', $categories, ['class' => 'form-control']) }}
             </div>
+
             <div class="form-group">
-                {{ Form::submit('Create category') }}
+                {{ Form::label('title', 'Post Title') }}
+                {{ Form::text('title', null, ['class' => 'form-control']) }}
+            </div>
+
+            <div class="form-group">
+                {{ Form::label('author', 'Author') }}
+                {{ Form::text('author', null, ['class' => 'form-control']) }}
+            </div>
+
+            <div class="form-group">
+                {{ Form::label('image', 'Image') }} <br>
+                {{ Form::file('image', null, ['class' => 'form-control']) }}
+            </div>
+
+            <div class="form-group">
+                {{ Form::label('short_desc', 'Short Description') }}
+                {{ Form::text('short_desc', null, ['class' => 'form-control']) }}
+            </div>
+
+            <div class="form-group">
+                {{ Form::label('description', 'Description') }}
+                {{ Form::textarea('description', null, ['class' => 'form-control']) }}
+            </div>
+
+            <div class="form-group">
+                {{ Form::submit('Create post') }}
             </div>
             {{ Form::close() }}
         </div>
