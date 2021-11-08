@@ -20,7 +20,7 @@
         </div>
     </nav>
 
-    {{-- @if(Session::has('info'))
+    @if(Session::has('info'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <em>{{ Session::get('info') }}</em>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -29,27 +29,29 @@
         </div>
     @endif
 
-    @if (count($categories) > 0)
+    @if (count($posts) > 0)
 
         <div class="panel">
-            <div class="panel-heading">All Categories</div>
+            <div class="panel-heading">All Posts</div>
             <div class="panel-body">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col" colspan="3">Category</th>
+                            <th scope="col" colspan="3">Post</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($categories as $category)
+                        @foreach ($posts as $post)    
                             <tr>
-                                <td>{{ $category->name }}</td>
-                                <td><a href="{{ url('/categories/' . $category->id . '/edit') }}">Edit</a></td>
+                                <td>{{ $post->title }}</td>
+                                <td>{{ $post->author }}</td>
+                                <td>{{ $post->category->name }}</td>
+                                <td>{{ $post->short_desc }}</td>
+                                <td><a href="{{ url('/posts/' . $post->id . '/edit') }}">Edit</a></td>
                                 <td>
-                                    <button class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('{{'category'. $category->id }}').submit();">Delete</button>
-                                    {{ Form::open(['url' => 'categories/' . $category->id, 'method' => 'delete', 'class' => 'd-none', 'id' => 'category' . $category->id]) }}
+                                    <button class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('{{'post'. $post->id }}').submit();">Delete</button>
+                                    {{ Form::open(['url' => 'posts/' . $post->id, 'method' => 'delete', 'class' => 'd-none', 'id' => 'post' . $post->id]) }}
                                     {{ Form::close() }}
-
                                 </td>
                             </tr>
                         @endforeach
@@ -58,6 +60,6 @@
             </div>
         </div>
 
-    @endif --}}
+    @endif
 
 @endsection

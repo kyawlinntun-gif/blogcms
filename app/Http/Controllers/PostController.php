@@ -12,7 +12,9 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view('post.main');
+        return view('post.main', [
+            'posts' => Post::all()
+        ]);
     }
 
     public function create()
@@ -32,10 +34,10 @@ class PostController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'category_id' => 'required|integer|exists:categories,id',
-            'title' => 'required|min:3|max:20',
+            'title' => 'required|min:3|max:50',
             'author' => 'required|min:3|max:20',
             'image' => 'required|mimes:jpg,png,jfif',
-            'short_desc' => 'required|min:20|max:50',
+            'short_desc' => 'required|min:20|max:100',
             'description' => 'required|min:50|max:1000'
         ]);
 
@@ -43,8 +45,28 @@ class PostController extends Controller
             return redirect('/posts/create')->withInput()->withErrors($validator);
         }
 
-        Post::create(['category_id' => $request->category_id, 'title' => $request->title, 'author' => $request->author, 'short_desc' => $request->short_desc, 'description' => $request->description]);
+        // Get filename with extension
+        $filenameWithExt = $request->file('image')->getClientOriginalName();
 
-        return redirect('/posts/create');
+        // Get just the filename
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+        // Get extension
+        $extension = $request->file('image')->getClientOriginalExtension();
+
+        // Create new filename
+        $filenameToStore = $filename . '_' . time() . '.' .$extension;
+
+        // Create Path
+        $destinationPath = public_path("/img/posts/");
+
+        // Upload image
+        $path = $request->file('image')->move($destinationPath, $filenameToStore);
+
+        Session::flash('info', 'Post was created successfully!');
+
+        Post::create(['category_id' => $request->category_id, 'title' => $request->title, 'author' => $request->author, 'image' => $filenameToStore, 'short_desc' => $request->short_desc, 'description' => $request->description]);
+
+        return redirect()->back();
     }
 }
