@@ -37,7 +37,11 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col" colspan="3">Post</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Image</th>
+                            <th scope="col" colspan="3">Description</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,6 +50,7 @@
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->author }}</td>
                                 <td>{{ $post->category->name }}</td>
+                                <td>{{ Html::image('/img/posts/'. $post->image, $post->title, ['width' => 60]) }}</td>
                                 <td>{{ $post->short_desc }}</td>
                                 <td><a href="{{ url('/posts/' . $post->id . '/edit') }}">Edit</a></td>
                                 <td>
