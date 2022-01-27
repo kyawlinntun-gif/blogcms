@@ -31,10 +31,6 @@
             <div class="row">
                 <!-- Blog entries-->
                 <div class="col-lg-8">
-                    <h1 class="mb-4">AIT Computer 
-                        <small style="color: gray; font-size: 2rem">Leading e-Learning in Myanmar</small>
-                    </h1>
-                    <!-- Featured blog post-->
                     @yield('content')
                     <!-- Pagination-->
                     <nav aria-label="Pagination">

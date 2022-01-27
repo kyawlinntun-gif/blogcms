@@ -47,6 +47,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+
+        Route::pattern('post', '[0-9]+');
+        Route::pattern('category', '[0-9]+');
     }
 
     /**

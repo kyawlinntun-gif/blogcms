@@ -14,4 +14,11 @@ class StoreController extends Controller
             'posts' => $posts
         ]);
     }
+
+    public function show(Post $post)
+    {
+        return view('store.view', [
+            'post' => $post
+        ]);
+    }
 }
