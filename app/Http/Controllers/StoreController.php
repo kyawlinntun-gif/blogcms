@@ -10,7 +10,7 @@ class StoreController extends Controller
 {
     public function index()
     {
-        $posts = Post::OrderBy('updated_at', 'desc')->get();
+        $posts = Post::OrderBy('updated_at', 'desc')->paginate(2);
         return view('store.main', [
             'posts' => $posts,
             'categories' => Category::all()
@@ -28,7 +28,15 @@ class StoreController extends Controller
     public function getPosts(Category $category)
     {
         return view('store.category', [
-            'posts' => $category->posts,
+            'posts' => $category->posts()->paginate(2),
+            'categories' => Category::all()
+        ]);
+    }
+
+    public function getSearch(Request $request)
+    {
+        return view('store.main', [
+            'posts' => Post::where('title', 'LIKE', "%{$request->search}%")->paginate(2),
             'categories' => Category::all()
         ]);
     }

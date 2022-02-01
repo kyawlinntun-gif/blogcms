@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         {{ Html::style('/css/styles.css') }}
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -33,18 +34,9 @@
                 <div class="col-lg-8">
                     @yield('content')
                     <!-- Pagination-->
-                    <nav aria-label="Pagination">
-                        <hr class="my-0" />
-                        <ul class="pagination justify-content-center my-4">
-                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                        </ul>
-                    </nav>
+                    <div class="mb-3">
+                        {{ $posts->links() }}
+                    </div>
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">
@@ -52,10 +44,12 @@
                     <div class="card mb-4">
                         <div class="card-header">Search</div>
                         <div class="card-body">
+                            {{ Form::open(['url' => '/store/search', 'method' => 'get', 'class' => 'form-group']) }}
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                                {{ Form::text('search', null, array('placeholder' => "Enter search term...", "class" => "form-control")) }}
+                                {{ Form::submit('Go!', array('class' => 'btn btn-primary', 'id' => 'button-search')) }}
                             </div>
+                            {{ Form::close() }}
                         </div>
                     </div>
                     <!-- Categories widget-->

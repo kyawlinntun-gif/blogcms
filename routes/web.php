@@ -19,5 +19,6 @@ use App\Http\Controllers\CategoryController;
 Route::get('/', [StoreController::class, 'index']);
 Route::resource('store/posts', StoreController::class)->except(['index']);
 Route::get('store/categories/{category}/posts', [StoreController::class, 'getPosts']);
+Route::get('store/search', [StoreController::class, 'getSearch']);
 Route::resource('categories', CategoryController::class);
 Route::resource('posts', PostController::class);
