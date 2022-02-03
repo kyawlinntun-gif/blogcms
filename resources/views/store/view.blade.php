@@ -11,7 +11,7 @@
             <div class="text-muted fst-italic mb-2">Posted on {{ $post->updated_at->diffForHumans() }} by {{ $post->author }}</div>
         </header>
         <!-- Preview image figure-->
-        {{ Html::image('/img/posts/'. $post->image, $post->title, array('style' => 'width: 734px; height: 458.75px;')) }}
+        {{ Html::image('/img/posts/'. $post->image, $post->title, array('style' => 'width: 827.33px; height: 458.75px;')) }}
         <!-- Post content-->
         <section class="mb-5 mt-3">
             <p>{{ $post->description }}</p>

@@ -7,7 +7,7 @@
     <!-- Featured blog post-->
     @foreach($posts as $post)
         <div class="card mb-4">
-            <a href="{{ url('/store/posts/'. $post->id) }}">{{ Html::image('/img/posts/'. $post->image, $post->title, array('style' => 'width: 734px; height: 458.75px;')) }}</a>
+            <a href="{{ url('/store/posts/'. $post->id) }}">{{ Html::image('/img/posts/'. $post->image, $post->title, array('style' => 'width: 827.33px; height: 458.75px;')) }}</a>
             <div class="card-body">
                 <div class="small text-muted">Posted on <em>{{ $post->updated_at->diffForHumans() }}</em> by <b>{{ $post->author }}</b></div>
                 <h2 class="card-title">{{ $post->title }}</h2>

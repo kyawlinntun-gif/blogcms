@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StoreController;
@@ -22,3 +23,7 @@ Route::get('store/categories/{category}/posts', [StoreController::class, 'getPos
 Route::get('store/search', [StoreController::class, 'getSearch']);
 Route::resource('categories', CategoryController::class);
 Route::resource('posts', PostController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

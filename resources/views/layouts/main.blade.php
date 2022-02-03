@@ -23,20 +23,33 @@
                         <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                        @auth
+                            <li class="nav-item"><a class="nav-link" href="#">{{ auth()->user()->name }}</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit()">Logout</a></li>
+                            <form action="{{ route('logout') }}" method="POST" id="logout-form" style="display: none;">
+                                @csrf
+                            </form>
+                        @else
+                            <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                        @endauth
                     </ul>
                 </div>
             </div>
         </nav>
+        @if(!Route::is('login') && !Route::is('register'))
         <div class="container">
             <div class="row">
                 <!-- Blog entries-->
                 <div class="col-lg-8">
                     @yield('content')
-                    <!-- Pagination-->
-                    <div class="mb-3">
-                        {{ $posts->links() }}
-                    </div>
+                    @if(!Route::is('posts.show'))
+                        <!-- Pagination-->
+                        <div class="mb-3">
+                            {{ $posts->links() }}
+                        </div>
+                    @endif
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">
@@ -75,6 +88,9 @@
                 </div>
             </div>
         </div>
+        @else
+            @yield('content')
+        @endif
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
