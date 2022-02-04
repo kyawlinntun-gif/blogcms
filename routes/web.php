@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\CategoryController;
 
@@ -23,6 +24,7 @@ Route::get('store/categories/{category}/posts', [StoreController::class, 'getPos
 Route::get('store/search', [StoreController::class, 'getSearch']);
 Route::resource('categories', CategoryController::class);
 Route::resource('posts', PostController::class);
+Route::get('/user', [UserController::class, 'index']);
 
 Auth::routes();
 

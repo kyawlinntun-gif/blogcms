@@ -26,6 +26,9 @@
                         <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
                         @auth
                             <li class="nav-item"><a class="nav-link" href="#">{{ auth()->user()->name }}</a></li>
+                            @if(auth()->user()->admin == 1)
+                                <li class="nav-item"><a class="nav-link" href="{{ url('/user') }}">Admin Dashboard</a></li>
+                            @endif
                             <li class="nav-item"><a class="nav-link" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit()">Logout</a></li>
                             <form action="{{ route('logout') }}" method="POST" id="logout-form" style="display: none;">
                                 @csrf
