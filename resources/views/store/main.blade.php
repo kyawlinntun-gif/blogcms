@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1 class="mb-4">AIT Computer 
-        <small style="color: gray; font-size: 2rem">Leading e-Learning in Myanmar</small>
+    <h1 class="mb-4" style="font-size: 2rem;">AIT Computer 
+        <small style="color: gray; font-size: 1rem;">Leading e-Learning in Myanmar</small>
     </h1>
     <!-- Featured blog post-->
     @foreach($posts as $post)

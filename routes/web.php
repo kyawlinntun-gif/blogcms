@@ -24,7 +24,7 @@ Route::get('store/categories/{category}/posts', [StoreController::class, 'getPos
 Route::get('store/search', [StoreController::class, 'getSearch']);
 Route::resource('categories', CategoryController::class);
 Route::resource('posts', PostController::class);
-Route::get('/user', [UserController::class, 'index']);
+Route::resource('users', UserController::class);
 
 Auth::routes();
 

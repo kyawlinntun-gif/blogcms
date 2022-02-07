@@ -50,6 +50,7 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::pattern('post', '[0-9]+');
         Route::pattern('category', '[0-9]+');
+        Route::pattern('user', '[0-9]+');
     }
 
     /**
